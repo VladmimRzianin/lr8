@@ -8,31 +8,31 @@ public abstract class User
     public string Login { get; set; }
     public string Password { get; set; }
 
-    public abstract void Menu();
+  public abstract void Menu();
 }
 
 public class UserManager
 {
     private List<User> Users = new List<User>();
 
-    public void AddUser(User user)
+ public void AddUser(User user)
     {
         if (Users.Any(u => u.Login == user.Login))
             throw new Exception("Логин уже существует.");
         Users.Add(user);
     }
 
-    public User Authenticate(string login, string password)
+ public User Authenticate(string login, string password)
     {
         return Users.FirstOrDefault(u => u.Login == login && u.Password == password);
     }
 
-    public void SaveToFile()
+  public void SaveToFile()
     {
         // сериализация списка users в бинарный файл
     }
 
-    public void LoadFromFile()
+  public void LoadFromFile()
     {
         // Десериализация списка Users из файла
     }
@@ -49,7 +49,7 @@ public class program8
             var keyInfo = Console.ReadKey(intercept: true);
             key = keyInfo.Key;
 
-            if (key == ConsoleKey.Backspace && password.Length > 0)
+ if (key == ConsoleKey.Backspace && password.Length > 0)
             {
                 Console.Write("\b \b");
                 password = password[..^1];
@@ -60,8 +60,7 @@ public class program8
                 password += keyInfo.KeyChar;
             }
         } while (key != ConsoleKey.Enter);
-
-        Console.WriteLine();
+     Console.WriteLine();
         return password;
     }
 }
@@ -76,8 +75,7 @@ public class program6
         {
             throw new Exception("Сотруднику должно быть минимум 18 лет.");
         }
-
-        // Добавить пользователя в систему
+    // Добавить пользователя в систему
         Console.WriteLine("Сотрудник успешно добавлен.");
     }
 
@@ -93,7 +91,7 @@ namespace YourNamespace
         public double Price { get; set; }
     }
 
-    public class Program
+ public class Program
     {
         public static void ApplyDiscount(List<Item> items)
         {
@@ -105,8 +103,7 @@ namespace YourNamespace
                 }
             }
         }
-
-        public static void Main()
+     public static void Main()
         {
             var items = new List<Item>
             {
@@ -114,10 +111,9 @@ namespace YourNamespace
                 new Item { Name = "сыр", ExpirationDate = DateTime.Now.AddDays(-20), Price = 150 },
                 new Item { Name = "хлеб", ExpirationDate = DateTime.Now.AddDays(-5), Price = 50 }
             };
+        ApplyDiscount(items);
 
-            ApplyDiscount(items);
-
-            foreach (var item in items)
+foreach (var item in items)
             {
                 Console.WriteLine($"{item.Name}: {item.Price}");
             }
@@ -137,7 +133,7 @@ public class Admin : User
             Console.WriteLine("3. Просмотр всех данных");
             Console.WriteLine("4. Выйти");
 
-            var key = Console.ReadKey();
+   var key = Console.ReadKey();
             switch (key.Key)
             {
                 case ConsoleKey.D1:
@@ -155,17 +151,16 @@ public class Admin : User
         }
     }
 
-    private void AddUser()
+   private void AddUser()
     {
         // Реализация добавления пользователя
     }
-
     private void DeleteUser()
     {
         // Реализация удаления пользователя
     }
 
-    private void ViewAllData()
+   private void ViewAllData()
     {
         // Реализация просмотра всех данных
     }
@@ -179,8 +174,7 @@ public class taxes
         const double FFOMS = 0.051;
         const double FSS = 0.029;
         const double NS = 0.002;
-
-        double taxes = grossSalary * (NDFL + PFR + FFOMS + FSS + NS);
+    double taxes = grossSalary * (NDFL + PFR + FFOMS + FSS + NS);
         return grossSalary - taxes;
     }
 }
@@ -191,11 +185,10 @@ public class passwordcheck
     {
         if (password.Length < 8)
             return false;
-
-        int upperCount = password.Count(char.IsUpper);
+    int upperCount = password.Count(char.IsUpper);
         int digitCount = password.Count(char.IsDigit);
         int specialCount = password.Count(c => "!@#$%^&*()".Contains(c));
 
-        return upperCount >= 3 && digitCount >= 3 && specialCount >= 2;
+   return upperCount >= 3 && digitCount >= 3 && specialCount >= 2;
     }
 }
